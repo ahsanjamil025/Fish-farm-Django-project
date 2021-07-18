@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+
+  <title>CodePen - Login</title>
+
+  <link rel="stylesheet" href="{%  static 'css/stylee.css'%}" media="screen" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+  <div class="container">
+
+    <div id="login">
+
+      <form action="/signin" method="POST">
+        {% csrf_token %}
+
+        <fieldset class="clearfix">
+
+          <p><span class="fontawesome-user"></span><input type="text" value="Username" name="Username"
+              onBlur="if(this.value == '') this.value = 'Username'"
+              onFocus="if(this.value == 'Username') this.value = ''" required></p>
+          <!-- JS because of IE support; better: placeholder="Username" -->
+          <p><span class="fontawesome-lock"></span><input type="password" value="Password"
+            name="password"
+              onBlur="if(this.value == '') this.value = 'Password'"
+              onFocus="if(this.value == 'Password') this.value = ''" required></p>
+          <!-- JS because of IE support; better: placeholder="Password" -->
+          
+          <p><input type="submit" value="Sign In"></p>
+
+        </fieldset>
+
+      </form>
+
+      <p>Not a member? <a href="{% url 'signup'%}">Sign up now</a><span class="fontawesome-arrow-right"></span></p>
+
+    </div> <!-- end login -->
+
+  </div>
+
+  <!-- sign up Model -->
+
+
+
+
+</body>
+
+</html>

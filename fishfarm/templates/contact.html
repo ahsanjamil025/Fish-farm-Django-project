@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+
+   <!-- css -->
+   <link href="{%  static 'css/bootstrap.css'%}" rel="stylesheet" />
+   <link href="{%  static 'css/bootstrap-responsive.css'%}" rel="stylesheet" />
+   <link href="{%  static 'css/prettyPhoto.css'%}" rel="stylesheet" />
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+   <link href="{%  static 'css/style.css'%}" rel="stylesheet">
+ 
+   <!-- Theme skin -->
+  <link id="t-colors" href="{%  static  'color/default.css'%}" rel="stylesheet" />
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{%  static  'ico/apple-touch-icon-144-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{%  static  'ico/apple-touch-icon-114-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{%  static  'ico/apple-touch-icon-72-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" href="{%  static  'ico/apple-touch-icon-57-precomposed.png'%}" />
+  <link rel="shortcut icon" href="{%  static  'ico/favicon.png'%}" />
+
+  <!-- =======================================================
+    Theme Name: Remember
+    Theme URL: https://bootstrapmade.com/remember-free-multipurpose-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+
+  <div id="wrapper">
+    <!-- start header -->
+    <header>
+      <div class="top">
+        <div class="container">
+          <div class="row">
+            <div class="span6" style="float: left;">
+              {% if user.is_authenticated %}
+              
+              <div class="span1">
+                <ul class="topmenu">
+                  <div class="span1" style="float: left;">
+                    <img src="{{extend.profile_pic.url}}" alt="Girl in a jacket" width="50px" height="50px"
+                      style="border-radius: 50%;">
+                  </div>
+               </ul>
+
+              </div>
+              
+
+            
+              
+
+              {% else %}
+
+                <ul class="topmenu">
+                  <li><a href="#">Home</a> &#47;</li>
+                  <li><a href="{% url 'signin'%}">Sign in</a> &#47;</li>
+                </ul>
+
+              {% endif %}
+            </div>
+            <div class="span6">
+
+              <ul class="social-network">
+
+                {% if user.is_authenticated %}
+                <li>
+                  <b style="color: rgb(245, 250, 245); padding-right: 5px;"> {{request.user}}</b>
+                </li>
+                <li>
+                  <a href="/logout" class="btn btn-danger">logout</a>
+                </li>
+
+                <li>
+                <a href="{% url 'Setting'%}" class="btn btn-red"><i class="icon-cog"></i> </a>
+                </li>
+
+                
+
+                {% else %}
+                <li><a href="#" data-placement="bottom" title="Facebook"><i
+                      class="icon-circled icon-bglight icon-facebook"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Twitter"><i
+                      class="icon-circled icon-bglight icon-twitter"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Linkedin"><i
+                      class="icon-circled icon-linkedin icon-bglight"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Pinterest"><i
+                      class="icon-circled icon-pinterest  icon-bglight"></i></a></li>
+                <li><a href="#" data-placement="bottom" title="Google +"><i
+                      class="icon-circled icon-google-plus icon-bglight"></i></a></li>
+
+                {% endif %}
+
+              </ul>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+
+
+        <div class="row nomargin">
+          <div class="span4">
+            <div class="logo">
+              <h1><a href="{% url 'index'%}"><i class="icon-tint"></i> Fish Farm</a></h1>
+            </div>
+          </div>
+          <div class="span8">
+            <div class="navbar navbar-static-top">
+              <div class="navigation">
+                <nav>
+                  <ul class="nav topnav">
+                    <li><a href="{% url 'index'%}">Home</a></li>
+                    
+                   
+                   
+                   
+                    <li class="active">
+                      <a href="{% url 'contact'%}">contact </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'about'%}">About </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <!-- end navigation -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header -->
+
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="inner-heading">
+              <h2>Get in touch</h2>
+            </div>
+          </div>
+          <div class="span8">
+            <ul class="breadcrumb">
+              <li><a href="{% url 'index'%}">Home</a> <i class="icon-angle-right"></i></li>
+              <li class="active">Contact</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="content">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <div class="container">
+        <div class="row">
+          <div class="span8">
+            <h4>Send your complaint or Question</h4>
+            <p>Get in touch with us by filling contact form below</p>
+            
+
+
+
+            <form id="contactform" action="/contact" method="post" role="form" class="contactForm">
+              
+             
+              <div id="sendmessage">Your message has been sent. Thank you!</div>
+              <div id="errormessage"></div>
+              {% csrf_token %} 
+              <div class="row container">
+                
+                <div class="span8 margintop10 field form-group">
+                  <input type="text" name="Name" placeholder="Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validation"></div>
+                </div>
+
+                <div class="span4 field form-group">
+                  <input type="text" name="Mobile" placeholder="* Mobile" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validation"></div>
+                </div>
+
+                <div class="span4 field form-group">
+                  <input type="text" name="Email" placeholder="* Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validation"></div>
+                </div>
+
+                <div class="span8 margintop10 field form-group">
+                  <textarea rows="auto" name="Message" class="input-block-level" placeholder="*Enter your complaint" data-rule="required" data-msg="Please write something"></textarea>
+                  <div class="validation"></div>
+                </div>
+
+                
+                
+
+                
+
+                <div class="span8 margintop10 field form-group">
+                  
+                  <div class="validation"></div>
+
+                  <p>
+                    <input class="btn btn-color margintop10 pull-left" type="submit" value ="Send">
+
+                    <button class="btn btn-primary margintop10 pull-left" style="margin-left: 2px;" type="submit">Reset</button>
+                    
+                    <span class="pull-right margintop20">* Please fill all required form field, thanks!</span>
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <div class="span4">
+            <div class="clearfix"></div>
+            <aside class="right-sidebar">
+
+              <div class="widget">
+                <h6 class="widgetheading">Contact information<span></span></h6>
+                {% for datas in ad %}
+
+                <ul class="contact-info">
+                  <li><label>Address :</label>{{datas.Street_address}}<br /> {{datas.city}}</li>
+                  <li><label>Phone :</label>{{datas.mobile}}</li>
+                  
+                  <li><label>Email : </label> {{datas.email}}</li>
+                </ul>
+                {% endfor %}
+
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span4">
+            <div class="widget">
+              
+              {% for datas in ad %}
+
+              <div class="footer_logo">
+                <h3><a href="{% url 'index'%}"><i class="icon-tint"></i> {{datas.name}}</a></h3>
+              </div>
+              <address>
+                <strong>{{datas.Company_name}}</strong><br>
+                {{datas.Street_address}}<br>
+                {{datas.city}}
+              </address>
+              <p>
+                <i class="icon-phone"></i> {{datas.mobile}} <br>
+                <i class="icon-envelope-alt"></i> {{datas.email}}
+              </p>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="span4">
+            <div class="widget">
+              <h5 class="widgetheading">Browse pages</h5>
+              <ul class="link-list">
+                <li><a href="{% url 'index'%}">Home</a></li>
+                <li><a href="{% url 'contact'%}">Contact us</a></li>
+                <li><a href="{% url 'about'%}">About us</a></li>
+              </ul>
+
+            </div>
+          </div>
+          <div class="span4">
+            <div class="widget">
+              <!--- Free tu use-->
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sub-footer">
+        <div class="container">
+          <div class="row">
+            <div class="span6">
+              <div class="copyright">
+                <p><span>&copy; Remember Inc. All right reserved</span></p>
+              </div>
+
+            </div>
+
+            <div class="span6">
+              <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Remember
+                -->
+                Created by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <a href="#" class="scrollup"><i class="icon-angle-up icon-rounded icon-bglight icon-2x"></i></a>
+
+  <!-- javascript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="{%  static 'js/jquery.js'%}"></script>
+  <script src="{%  static 'js/jquery.easing.1.3.js'%}"></script>
+  <script src="{%  static 'js/bootstrap.js'%}"></script>
+  <script src="{%  static 'js/modernizr.custom.js'%}"></script>
+  <script src="{%  static 'js/toucheffects.js'%}"></script>
+  <script src="{%  static 'js/google-code-prettify/prettify.js'%}"></script>
+  <script src="{%  static 'js/jquery.prettyPhoto.js'%}"></script>
+  <script src="{%  static 'js/portfolio/jquery.quicksand.js'%}"></script>
+  <script src="{%  static 'js/portfolio/setting.js'%}"></script>
+  <script src="{%  static 'js/animate.js'%}"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="{%  static 'contactform/contactform.js'%}"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="{%  static 'js/custom.js'%}"></script>
+
+</body>
+
+</html>

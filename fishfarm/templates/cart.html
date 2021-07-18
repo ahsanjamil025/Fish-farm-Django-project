@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <title>Your cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+
+  <!-- css -->
+  <link href="{%  static 'css/bootstrap.css'%}" rel="stylesheet" />
+  <link href="{%  static 'css/bootstrap-responsive.css'%}" rel="stylesheet" />
+  <link href="{%  static 'css/prettyPhoto.css'%}" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="{%  static 'css/style.css'%}" rel="stylesheet">
+  <link href="{%  static 'css/model.css'%}" rel="stylesheet">
+  
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+   <!-- Theme skin -->
+   <link id="t-colors" href="{%  static  'color/default.css'%}" rel="stylesheet" />
+
+   <!-- Fav and touch icons -->
+   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{%  static  'ico/apple-touch-icon-144-precomposed.png'%}" />
+   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{%  static  'ico/apple-touch-icon-114-precomposed.png'%}" />
+   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{%  static  'ico/apple-touch-icon-72-precomposed.png'%}" />
+   <link rel="apple-touch-icon-precomposed" href="{%  static  'ico/apple-touch-icon-57-precomposed.png'%}" />
+   <link rel="shortcut icon" href="{%  static  'ico/favicon.png'%}" />
+  <!-- =======================================================
+    Theme Name: Remember
+    Theme URL: https://bootstrapmade.com/remember-free-multipurpose-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+    
+
+    <!-- start header -->
+    <header>
+
+      <div class="container">
+
+
+        <div class="row nomargin">
+          <div class="span4">
+            <div class="logo">
+              <h1><a href="{% url 'index'%}"><i class="icon-tint"></i> Fish Farm</a></h1>
+            </div>
+          </div>
+          <div class="span8">
+            <div class="navbar navbar-static-top">
+              <div class="navigation">
+                <nav>
+                  <ul class="nav topnav">
+
+                    <li></li>
+
+                    
+                  </ul>
+                </nav>
+              </div>
+              <!-- end navigation -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header -->
+
+
+
+    <section id="content">
+      <div class="container">
+        <div class="row demobtn">
+          <div class="span12">
+
+
+
+            <h4 class="heading"><strong>Cart detail</strong> -Manage your cart detail from here  <span></span></h4>
+            <!-- divider -->
+            <div class="row">
+              <div class="span12">
+                <div class="solidline"></div>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="span12">
+                {% load cart_tag %}
+
+                Total Length :: {{request.session.cart|length}}
+
+
+                <table class="table table-striped">
+                  <thead >
+                    <tr class="danger">
+                      <th>
+                        #
+                      </th>
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Picture
+                      </th>
+                      <th>
+                        Price
+                      </th>
+                      <th>
+                        Quantity
+                      </th>
+                      <th>
+                        Total
+                      </th>
+                      <th>
+                        Delete
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for key,value in request.session.cart.items %}
+                    <tr>
+                      <td>
+                        {{forloop.counter}}
+                      </td>
+                      <td>
+                        {{value.name}}
+                      </td>
+                      <td>
+                        <img src="{{value.image}}" height="200" width="200" >
+                      </td>
+                      <td>
+                        {{value.price}}
+                      </td>
+                      <td>
+
+                        
+                        <span>
+                          <div >
+                            <a href="{% url 'item_increment' value.product_id %}" class="btn btn-info">  + </a>
+                          </div>
+                          <div >
+                           <p>{{value.quantity}}</p>
+                          </div>
+                          {% if value.quantity == 1 %}
+                            <div >
+                              <a href="{% url 'deletecartitem' value.product_id %}" class="btn btn-info"> -  </a> 
+                            </div>
+
+                          {% else %}
+                            <div >
+                              <a href="{% url 'item_decrement' value.product_id %}" class="btn btn-info"> -  </a> 
+                            </div>
+                          {% endif %}
+                        </span>
+                      </td>
+
+                      <td>
+                        {{ value.price|multiply:value.quantity }}
+                        
+                      </td>
+                      <td>
+                        <a href="{% url 'deletecartitem' value.product_id %}" class="btn " onclick="return confirm('Are you sure?')">
+                          <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                        
+                      </td>
+                    
+
+                      
+                    </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+                <!-- Button -->
+
+                <div style="width: 100%;">
+                  <div style="width: 50%; float: left;">
+                    <input type="submit" class="btn btn-rounded btn-large btn-danger"  value="Clear cart">
+                  </div>
+                  <div style="width: 50%;float: left; ">
+                    
+                   
+                    <input type="submit" class="btn btn-rounded btn-large btn-success" style="float: right" onclick="togglePopup()" value="Buy your order">
+                   
+                  
+                  </div>
+                  
+
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <!-- end span12 -->
+
+          <!-- Model -->
+          <div class="popup" id="popup-1">
+            <div class="overlay"></div>
+            <div class="content">
+              <div class="close-btn" onclick="togglePopup()">×</div>
+              <h1>Confirm Order</h1>
+              <form method="post" class="order-form" action="{% url 'store' %}" >
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Enter postal address</label>
+                  <input name="address"  placeholder="Postal address"class="form-control" id="exampleFormControlTextarea1" rows="3"></input>
+                </div> 
+                <div style="width: 100%;">
+                  <div style="width: 50%; float: left;">
+                    <span> <h4 style="float: left;">Total bill:</h4> <h4 style="float: left;">{{bill}}</h4> </span>
+                    
+                  </div>
+                  <div style="width: 50%;float: left; ">
+                    
+                     
+                      <input type="submit" class="btn btn-rounded btn-large btn-success" style="float: right" onclick="return confirm('your request has been sent press ok')" value="Confirm">
+                  
+                  </div>
+                
+                </div>
+             
+              </form>
+            </div>
+          </div>
+           
+          
+          
+          
+        </div>
+      </div>
+      
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <div class="copyright">
+              <p><span>&copy; Remember Inc. All right reserved</span></p>
+            </div>
+
+          </div>
+
+          <div class="span6">
+            <div class="credits">
+              <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Remember
+                -->
+              Created by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+  </div>
+  <a href="#" class="scrollup"><i class="icon-angle-up icon-rounded icon-bglight icon-2x"></i></a>
+  <!-- javascript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="{%  static 'js/jquery.js'%}"></script>
+  <script src="{%  static 'js/jquery.easing.1.3.js'%}"></script>
+  <script src="{%  static 'js/bootstrap.js'%}"></script>
+  <script src="{%  static 'js/modernizr.custom.js'%}"></script>
+  <script src="{%  static 'js/toucheffects.js'%}"></script>
+  <script src="{%  static 'js/google-code-prettify/prettify.js'%}"></script>
+  <script src="{%  static 'js/jquery.prettyPhoto.js'%}"></script>
+  <script src="{%  static 'js/portfolio/jquery.quicksand.js'%}"></script>
+  <script src="{%  static 'js/portfolio/setting.js'%}"></script>
+  <script src="{%  static 'js/animate.js'%}"></script>
+  <script src="{%  static 'js/model.js'%}"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="{%  static 'js/custom.js'%}"></script>
+
+</body>
+
+</html>

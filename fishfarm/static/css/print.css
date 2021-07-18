@@ -1,0 +1,24 @@
+.header1, .header1-space,
+.footer, .footer-space {
+  height: 100px;
+}
+.header1 {
+  position: fixed;
+  top: 0;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+}
+@media print{
+  /* Hide every other element */
+  body * {
+    visibility: hidden;
+  }
+  .Print-container, .Print-container * {
+    visibility: visible;
+  }
+  .header1, .header1 *{
+    visibility: visible;
+  }
+}

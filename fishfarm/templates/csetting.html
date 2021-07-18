@@ -1,0 +1,309 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Setting-contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+
+
+  <!-- css -->
+  <link href="{%  static 'css/bootstrap.css'%}" rel="stylesheet" />
+
+  <link href="{%  static 'css/bootstrap-responsive.css'%}" rel="stylesheet" />
+  <link href="{%  static 'css/prettyPhoto.css'%}" rel="stylesheet" />
+  <link href=" 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="{%  static  'css/style.css'%}" rel="stylesheet">
+
+  
+
+  <!-- Theme skin -->
+  <link id="t-colors" href="{%  static  'color/default.css'%}" rel="stylesheet" />
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{%  static  'ico/apple-touch-icon-144-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{%  static  'ico/apple-touch-icon-114-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{%  static  'ico/apple-touch-icon-72-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" href="{%  static  'ico/apple-touch-icon-57-precomposed.png'%}" />
+  <link rel="shortcut icon" href="{%  static  'ico/favicon.png'%}" />
+
+ 
+
+  <!-- =======================================================
+    Theme Name: Remember
+    Theme URL: https://bootstrapmade.com/remember-free-multipurpose-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- start header -->
+    <header>
+      <div class="top">
+        <div class="container">
+          <div class="row">
+            <div class="span6" style="float: left;">
+              {% if user.is_authenticated %}
+              
+                <div class="span1">
+                  <ul class="topmenu">
+                    <li>
+                      <div class="span1" style="float: left;">
+                        <img src="{{extend.profile_pic.url}}" alt="profile_pic" width="50px" height="50px"
+                          style="border-radius: 50%;">
+                      </div>
+                    </li>
+                  
+                  </ul>
+
+                </div>
+
+              {% else %}
+
+               
+
+              {% endif %}
+            </div>
+
+            <div class="span6">
+
+              <ul class="social-network">
+
+                {% if user.is_authenticated %}
+                  <li>
+                    <b style="color: rgb(245, 250, 245); padding-right: 5px;"> {{request.user}}</b>
+                  </li>
+                  <li>
+                    
+                  </li>
+                  <li>
+                    <a href="/logout" class="btn btn-danger">logout</a>
+                  </li>
+
+                {% else %}
+                {% endif %}
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row nomargin">
+          <div class="span4">
+            <div class="logo">
+              <h1><a href=""><i class="icon-tint"></i> Fish Farm</a></h1>
+            </div>
+          </div>
+          <div class="span8">
+            <div class="navbar navbar-static-top">
+              <div class="navigation">
+                <nav>
+                  <ul class="nav topnav">
+                   
+
+                    <li class="active">
+                      <a href="{% url 'Setting'%}">Setting </a>
+                    </li>
+                    
+                  </ul>
+                </nav>
+              </div>
+              <!-- end navigation -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </header>
+    <!-- end header -->
+
+
+  </div>
+  </section>
+  <section id="inner-headline">
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <div class="inner-heading">
+            <h2>settings</h2>
+          </div>
+        </div>
+        <div class="span8">
+          <ul class="breadcrumb">
+            <li ><a href="#">Home</a> <i class="icon-angle-right"></i></li>
+            <li class="active"><a href="#">setting</a> <i ></i></li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /section product -->
+  <section id="content">
+    <div class="container">
+      <div class="row">
+        
+          <div class="span4">
+            <div class="row">
+              <label >Profile Picture</label>
+            <img src="{{extend.profile_pic.url}}" style="height: 300px;width: 300px;" alt="">
+            <br>
+           
+            </div>
+          </div>
+            <div class="span8">
+              <div class="row">
+                <!-- start: Accordion -->
+                <div class="accordion" id="accordion2">
+                  <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle active" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      <i class="icon-minus"></i>Update your contact</a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse in">
+                      <div class="accordion-inner">
+                
+                        <form action="" method="POST" class="contactForm" enctype="multipart/form-data">
+
+                          {% csrf_token %}
+                          {{extend1}}
+
+                          
+                          
+
+                          <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+                            <input name="Save" type="submit" class="form-control btn btn-success" value="Save">
+                          </div>
+                        </form>
+                          
+
+                        
+                
+                      </div>
+                    </div>
+                  </div>
+                 
+                      
+                  </div>
+                  
+                </div>
+
+
+              </div>
+            </div>
+            
+          
+         
+
+      </div>
+    </div>
+  </section>
+
+
+ 
+
+ 
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <div class="widget">
+
+            {% for datas in ad %}
+
+            <div class="footer_logo">
+              <h3><a href="{% url 'index'%}"><i class="icon-tint"></i> {{datas.name}}</a></h3>
+            </div>
+            <address>
+              <strong>{{datas.Company_name}}</strong><br>
+              {{datas.Street_address}}<br>
+              {{datas.city}}
+            </address>
+            <p>
+              <i class="icon-phone"></i> {{datas.mobile}} <br>
+              <i class="icon-envelope-alt"></i> {{datas.email}}
+            </p>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="span4">
+          <div class="widget">
+            <h5 class="widgetheading">Browse pages</h5>
+            <ul class="link-list">
+              <li><a href="{% url 'index'%}">Home</a></li>
+              <li><a href="{% url 'contact'%}">Contact us</a></li>
+              <li><a href="{% url 'about'%}">About us</a></li>
+
+            </ul>
+
+          </div>
+        </div>
+        <div class="span4">
+          <div class="widget">
+            <!--- Free tu use-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sub-footer">
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <div class="copyright">
+              <p><span>&copy; Remember Inc. All right reserved</span></p>
+            </div>
+
+          </div>
+
+          <div class="span6">
+            <div class="credits">
+              <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Remember
+                -->
+              Created by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+  <a href="#" class="scrollup"><i class="icon-angle-up icon-rounded icon-bglight icon-2x"></i></a>
+
+  <!-- javascript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="{%  static 'js/jquery.js'%}"></script>
+  <script src="{%  static 'js/jquery.easing.1.3.js'%}"></script>
+  <script src="{%  static 'js/bootstrap.js'%}"></script>
+  <script src="{%  static 'js/modernizr.custom.js'%}"></script>
+  <script src="{%  static 'js/toucheffects.js'%}"></script>
+  <script src="{%  static 'js/google-code-prettify/prettify.js'%}"></script>
+  <script src="{%  static 'js/jquery.prettyPhoto.js'%}"></script>
+  <script src="{%  static 'js/portfolio/jquery.quicksand.js'%}"></script>
+  <script src="{%  static 'js/portfolio/setting.js'%}"></script>
+  <script src="{%  static 'js/animate.js'%}"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="{%  static 'js/custom.js'%}"></script>
+
+
+
+
+
+</body>
+
+</html>

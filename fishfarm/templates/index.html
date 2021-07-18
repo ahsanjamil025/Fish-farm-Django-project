@@ -1,0 +1,409 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your page description here" />
+  <meta name="author" content="" />
+
+
+  <!-- css -->
+  <link href="{%  static 'css/bootstrap.css'%}" rel="stylesheet" />
+
+  <link href="{%  static 'css/bootstrap-responsive.css'%}" rel="stylesheet" />
+  <link href="{%  static 'css/prettyPhoto.css'%}" rel="stylesheet" />
+  <link href=" 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <link href="{%  static  'css/style.css'%}" rel="stylesheet">
+
+  
+
+  <!-- Theme skin -->
+  <link id="t-colors" href="{%  static  'color/default.css'%}" rel="stylesheet" />
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{%  static  'ico/apple-touch-icon-144-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{%  static  'ico/apple-touch-icon-114-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{%  static  'ico/apple-touch-icon-72-precomposed.png'%}" />
+  <link rel="apple-touch-icon-precomposed" href="{%  static  'ico/apple-touch-icon-57-precomposed.png'%}" />
+  <link rel="shortcut icon" href="{%  static  'ico/favicon.png'%}" />
+
+ 
+
+  <!-- =======================================================
+    Theme Name: Remember
+    Theme URL: https://bootstrapmade.com/remember-free-multipurpose-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- start header -->
+    <header>
+      <div class="top">
+        <div class="container">
+          <div class="row">
+            <div class="span6" style="float: left;">
+              {% if user.is_authenticated %}
+              
+                <div class="span1">
+                  <ul class="topmenu">
+                    <li>
+                      <div class="span1" style="float: left;">
+                        <img src="{{extend.profile_pic.url}}" alt="Proile picture" width="50px" height="50px"
+                          style="border-radius: 50%;">
+                      </div>
+                    </li>
+                  
+                  </ul>
+
+                </div>
+
+              {% else %}
+
+                <ul class="topmenu">
+                  <li><a href="#">Home</a> &#47;</li>
+                  <li><a href="{% url 'signin'%}">Sign in</a> &#47;</li>
+                </ul>
+
+              {% endif %}
+            </div>
+
+            <div class="span6">
+
+              <ul class="social-network">
+
+                {% if user.is_authenticated %}
+                  <li>
+                    <b style="color: rgb(245, 250, 245); padding-right: 5px;"> Hello,<strong>{{request.user}}</strong></b>
+                 
+                  <li>
+                    <a href="/logout" class="btn btn-danger">logout</a>
+                  </li>
+
+                  <li>
+                    <a href="{% url 'Setting'%}" class="btn btn-red"><i class="icon-cog"></i> </a>
+                  </li>
+
+                {% else %}
+
+                  <li><a href="#" data-placement="bottom" title="Facebook"><i
+                        class="icon-circled icon-bglight icon-facebook"></i></a></li>
+                  <li><a href="#" data-placement="bottom" title="Twitter"><i
+                        class="icon-circled icon-bglight icon-twitter"></i></a></li>
+                  <li><a href="#" data-placement="bottom" title="Linkedin"><i
+                        class="icon-circled icon-linkedin icon-bglight"></i></a></li>
+                  <li><a href="#" data-placement="bottom" title="Pinterest"><i
+                        class="icon-circled icon-pinterest  icon-bglight"></i></a></li>
+                  <li><a href="#" data-placement="bottom" title="Google +"><i
+                        class="icon-circled icon-google-plus icon-bglight"></i></a></li>
+
+                {% endif %}
+
+              </ul>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+
+
+        <div class="row nomargin">
+          <div class="span4">
+            <div class="logo">
+              <h1><a href="{% url 'index'%}"><i class="icon-tint"></i> Fish Farm</a></h1>
+            </div>
+          </div>
+          <div class="span8">
+            <div class="navbar navbar-static-top">
+              <div class="navigation">
+                <nav>
+                  <ul class="nav topnav">
+                    <li class="active">
+                      <a href="{% url 'index'%}">Home</a>
+                    </li>
+
+                    <li>
+                      <a href="{% url 'contact'%}">contact </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'about'%}">About </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <!-- end navigation -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </header>
+    <!-- end header -->
+
+    <!-- section intro -->
+    <section id="intro">
+      <div class="intro-content">
+        <h2>Welcome to Fish Farm</h2>
+        <h3>We are here to provide you healthy and hygienic food</h3>
+        
+          <a href="#content" class="btn-get-started scrollto">Get Started</a>
+        </div>
+      </div>
+    </section>
+    <!-- /section intro -->
+
+    
+
+
+
+
+  </div>
+  </section>
+  <!-- /section product -->
+  <section id="content">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="row">
+
+            {% for data in product %}
+
+            <div class="span3">
+              <div class="box aligncenter">
+                <div class="icon">
+                  <span class="badge badge-success badge-circled">{{forloop.counter}}</span>
+                  <i><img src={{data.image.url}} alt="fish"></i>
+                </div>
+                <div class="text">
+                  <h4><strong>{{data.name}}</strong></h4>
+                  <p>
+                    {{data.price}}/Kg
+                  </p>
+                  {% if user.is_authenticated %}
+
+                    <a href="{% url 'cart_add' data.id %}" class="  btn  btn-primary" onclick="return confirm('Do you want to add this item in cart?')" >Add to cart </a>
+                  
+                  {% else %}
+                    <a href="{% url 'signin'  %}" class="  btn  btn-primary" onclick="return confirm('Please login, then add to cart')" >Add to cart </a>
+
+                  {% endif %}
+                    
+                  </a>
+                  <a href="{% url 'cart_detail'  %}" class="btn btn-info">view</a>
+                  
+
+                  <br>
+
+
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="offer">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="row">
+            <div class="span12">
+              <div class="aligncenter">
+                <h3>Our features and pricing</h3>
+                <blockquote>
+                  Lorem ipsum dolor sit amet, labores dolorum scriptorem eum an, te quodsi sanctus neglegentur eam, et
+                  lorem persecuti conclusionemque mei.
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="span3">
+              <h5>Choose package and start grow</h5>
+              <p>
+                Per an putent audiam adolescens, mel ceteros fierent democritum te. No ubique malorum euismod usu.
+              </p>
+              <p>
+                Movet facilis democritum ea quo. Est ei illum consulatu accommodare, nam dicta expetenda suavitate ad.
+              </p>
+            </div>
+
+            <div class="span3">
+              <div class="pricing-box-plain">
+                <div class="heading">
+                  <h4>Standard</h4>
+                  <span>$9 / Month</span>
+                </div>
+                <div class="desc">
+                  <ul>
+                    <li>For 1 Application</li>
+                    <li>Free one year support</li>
+                    <li>Unlimited disk spaces</li>
+                  </ul>
+                </div>
+                <div class="action">
+                  <a href="#" class="btn btn-inverse">Sign Up</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="span3">
+              <div class="pricing-box-plain">
+                <div class="heading">
+                  <h4>Medium</h4>
+                  <span>$29 / Month</span>
+                </div>
+                <div class="desc">
+                  <ul>
+                    <li>For 10 Applications</li>
+                    <li>Free life time support</li>
+                    <li>Unlimited disk spaces</li>
+                  </ul>
+                </div>
+                <div class="action">
+                  <a href="#" class="btn btn-inverse">Sign Up</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="span3">
+              <div class="pricing-box-plain">
+                <div class="heading">
+                  <h4>Elite</h4>
+                  <span>$59 / Month</span>
+                </div>
+                <div class="desc">
+                  <ul>
+                    <li>For unlimited appliacations</li>
+                    <li>Free life time support</li>
+                    <li>Unlimited disk spaces</li>
+                  </ul>
+                </div>
+                <div class="action">
+                  <a href="#" class="btn btn-color">Sign Up</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+ 
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <div class="widget">
+
+            {% for datas in ad %}
+
+            <div class="footer_logo">
+              <h3><a href="{% url 'index'%}"><i class="icon-tint"></i> {{datas.name}}</a></h3>
+            </div>
+            <address>
+              <strong>{{datas.Company_name}}</strong><br>
+              {{datas.Street_address}}<br>
+              {{datas.city}}
+            </address>
+            <p>
+              <i class="icon-phone"></i> {{datas.mobile}} <br>
+              <i class="icon-envelope-alt"></i> {{datas.email}}
+            </p>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="span4">
+          <div class="widget">
+            <h5 class="widgetheading">Browse pages</h5>
+            <ul class="link-list">
+              <li><a href="{% url 'index'%}">Home</a></li>
+              <li><a href="{% url 'contact'%}">Contact us</a></li>
+              <li><a href="{% url 'about'%}">About us</a></li>
+
+            </ul>
+
+          </div>
+        </div>
+        <div class="span4">
+          <div class="widget">
+            <!--- Free tu use-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sub-footer">
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <div class="copyright">
+              <p><span>&copy; Remember Inc. All right reserved</span></p>
+            </div>
+
+          </div>
+
+          <div class="span6">
+            <div class="credits">
+              <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Remember
+                -->
+              Created by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+  <a href="#" class="scrollup"><i class="icon-angle-up icon-rounded icon-bglight icon-2x"></i></a>
+
+  <!-- javascript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="{%  static 'js/jquery.js'%}"></script>
+  <script src="{%  static 'js/jquery.easing.1.3.js'%}"></script>
+  <script src="{%  static 'js/bootstrap.js'%}"></script>
+  <script src="{%  static 'js/modernizr.custom.js'%}"></script>
+  <script src="{%  static 'js/toucheffects.js'%}"></script>
+  <script src="{%  static 'js/google-code-prettify/prettify.js'%}"></script>
+  <script src="{%  static 'js/jquery.prettyPhoto.js'%}"></script>
+  <script src="{%  static 'js/portfolio/jquery.quicksand.js'%}"></script>
+  <script src="{%  static 'js/portfolio/setting.js'%}"></script>
+  <script src="{%  static 'js/animate.js'%}"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="{%  static 'js/custom.js'%}"></script>
+
+
+
+
+
+</body>
+
+</html>

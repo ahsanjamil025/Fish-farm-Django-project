@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>َSign Up</title>
+    <link rel="stylesheet" href="{%  static 'style.css'%}">
+  </head>
+  <body>
+
+<form class="box" action="/signup" method="post">
+  {% csrf_token %}
+  <h1>sign Up Here</h1>
+  <input type="text"  name="Username" placeholder="Username" required>
+  <input type="text"name="Fname" placeholder="First Name" required>
+  <input type="text" name="Lname" placeholder="Last Name" required>
+  <input type="text" name="Email" placeholder="Email" required>
+  <input type="password" name="Password" placeholder="Password" required>
+  <input type="password" name="Confirm Password" placeholder="Confirm Password" required>
+
+  <input type="submit" name="" value="SignUp">
+</form>
+
+
+  </body>
+</html>
