@@ -163,7 +163,7 @@ def edit(request , pk ):
             form.save()
             status = request.POST['status']
             if (status=='deliver' or status=='Deliver' or status=='deliverd' or status=='Deliverd') and (email !="empty"):
-                sender = 'ahsanjamil025@gmail.com'
+                sender = 'sender email'
                 receivers = [email]
                 body_of_email = 'YOUR order has been recieve you will get soon!...\n Thanks for shoping'
                 msg = MIMEText(body_of_email, 'html')
@@ -171,7 +171,7 @@ def edit(request , pk ):
                 msg['From'] = sender
                 msg['To'] = ','.join(receivers)
                 s = smtplib.SMTP_SSL(host = 'smtp.gmail.com', port = 465)
-                s.login(user = 'ahsanjamil025@gmail.com', password = 'jamil332')
+                s.login(user = 'sender email', password = 'sender password')
                 s.sendmail(sender, receivers, msg.as_string())
                 s.quit()
                 print("Email has been sent sucessfully!")
